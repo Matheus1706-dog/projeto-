@@ -7,10 +7,9 @@
 #define MAX_DESCRICAO 50
 #define MAX_DATA 20
 
-// Estrutura para armazenar uma operação
 typedef struct {
     int id;
-    char tipo[20];          // "SAQUE", "DEPOSITO", "TRANSFERENCIA", "CONSULTA"
+    char tipo[20];         
     double valor;
     char descricao[MAX_DESCRICAO];
     char data_hora[MAX_DATA];
@@ -18,16 +17,16 @@ typedef struct {
     double saldo_atual;
 } Operacao;
 
-// Estrutura para o histórico
+
 typedef struct {
     Operacao operacoes[MAX_OPERACOES];
     int total_operacoes;
 } HistoricoOperacoes;
 
-// Variável global para o histórico
+
 HistoricoOperacoes historico = {0};
 
-// Função para obter data/hora atual
+
 void obter_data_hora(char *buffer) {
     time_t tempo_atual;
     struct tm *info_tempo;
@@ -38,12 +37,12 @@ void obter_data_hora(char *buffer) {
     strftime(buffer, MAX_DATA, "%d/%m/%Y %H:%M:%S", info_tempo);
 }
 
-// Função para adicionar uma operação ao histórico
+
 void adicionar_operacao(const char *tipo, double valor, const char *descricao, 
                        double saldo_anterior, double saldo_atual) {
     if (historico.total_operacoes >= MAX_OPERACOES) {
         printf("Histórico cheio! Removendo operação mais antiga...\n");
-        // Move todas as operações uma posição para trás
+        
         for (int i = 0; i < MAX_OPERACOES - 1; i++) {
             historico.operacoes[i] = historico.operacoes[i + 1];
         }
@@ -62,7 +61,7 @@ void adicionar_operacao(const char *tipo, double valor, const char *descricao,
     historico.total_operacoes++;
 }
 
-// Função para exibir o histórico completo
+
 void exibir_historico_completo() {
     printf("\n");
     printf("=====================================\n");
@@ -138,7 +137,7 @@ void exibir_historico_por_tipo(const char *tipo_filtro) {
     printf("=====================================\n");
 }
 
-// Função para exibir últimas N operações
+
 void exibir_ultimas_operacoes(int quantidade) {
     printf("\n");
     printf("=====================================\n");
@@ -171,7 +170,7 @@ void exibir_ultimas_operacoes(int quantidade) {
     printf("=====================================\n");
 }
 
-// Função para gerar relatório de movimentação
+
 void gerar_relatorio_movimentacao() {
     printf("\n");
     printf("=====================================\n");
@@ -219,7 +218,7 @@ void gerar_relatorio_movimentacao() {
     printf("=====================================\n");
 }
 
-// Menu do histórico de operações
+
 void menu_historico() {
     int opcao;
     
@@ -284,15 +283,15 @@ void menu_historico() {
         }
         
         if (opcao != 0) {
-            printf("\nPressione Enter para continuar...");
-            getchar(); // Limpa o buffer
-            getchar(); // Aguarda Enter
+            printf("\nPara continuar...");
+            getchar(); a
+            getchar(); 
         }
         
     } while (opcao != 0);
 }
 
-// Função para demonstrar o uso do módulo
+
 void demonstrar_uso() {
     double saldo = 1000.0;
     
@@ -314,7 +313,7 @@ void demonstrar_uso() {
     printf("Foram adicionadas algumas operações de exemplo.\n");
 }
 
-// Função principal
+
 int main() {
     demonstrar_uso();
     menu_historico();
